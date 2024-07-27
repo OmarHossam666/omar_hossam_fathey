@@ -1,7 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+            apiKey: 'AIzaSyDtKA2DqvO13xRdFr3rGh3kj0tAjDHx6Js',
+            appId: '1:518137228236:web:3be76cf6d65aa6f46d8b69',
+            messagingSenderId: '518137228236',
+            projectId: 'omar-hossam-fathey'));
+  }
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

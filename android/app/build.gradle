@@ -1,6 +1,9 @@
+apply plugin: 'com.android.application'
+
 plugins {
     id "com.android.application"
     id "kotlin-android"
+    id "com.google.gms.google-services"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
 }
@@ -33,6 +36,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    compileSdkVersion 34
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.omar_hossam_fathey"
@@ -53,6 +57,13 @@ android {
     }
 }
 
+dependencies {
+    implementation 'com.google.android.gms:play-services-base:17.6.0'
+    implementation 'com.google.firebase:firebase-analytics:19.0.0'
+}
+
 flutter {
     source = "../.."
 }
+
+apply plugin: 'com.google.gms.google-services'

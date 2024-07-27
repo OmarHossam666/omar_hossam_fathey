@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "518137228236",
+    "project_id": "omar-hossam-fathey",
+    "storage_bucket": "omar-hossam-fathey.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518137228236:android:d6f7e8e54688da5b6d8b69",
+        "android_client_info": {
+          "package_name": "com.example.omar_hossam_fathey"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANu1_uX-rdDKIoiOltdBIofb4HDzqt9uc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
