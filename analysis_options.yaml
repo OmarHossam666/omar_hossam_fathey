@@ -10,7 +10,6 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  strong-mode: true
   errors:
     unused_local_variable: ignore
 
@@ -22,7 +21,6 @@ linter:
     - constant_identifier_names
     - empty_constructor_bodies
     - non_constant_identifier_names
-    - prefer_single_quotes
     - sort_constructors_first
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
