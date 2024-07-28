@@ -1,5 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'auth_controller.dart';
@@ -28,8 +26,21 @@ class HomeScreen extends StatelessWidget
         ],
       ),
       body: Center(
-        child: const Text("Welcome!",
-          style: const TextStyle(fontSize: 24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Welcome!",
+              style: TextStyle(fontSize: 24),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Get.toNamed('/upload');
+              },
+              child: const Text('Upload Photo'),
+            ),
+          ],
         ),
       ),
     );
