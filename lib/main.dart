@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget
 
     return Obx(
       () => GetMaterialApp(
-        title: 'Image Upload App',
+        title: 'Photo Upload App',
         theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Colors.blue,
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget
         ),
         darkTheme: ThemeData(
           brightness: Brightness.dark,
-          primaryColor: Colors.blue,
+          primaryColor: Colors.lightBlue,
           textTheme: GoogleFonts.robotoTextTheme(),
         ),
         themeMode: themeController.isDarkMode.value ? ThemeMode.dark : ThemeMode.light,

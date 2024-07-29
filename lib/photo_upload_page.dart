@@ -9,10 +9,10 @@ class PhotoUploadPage extends StatefulWidget
   const PhotoUploadPage({super.key});
 
   @override
-  _PhotoUploadPageState createState() => _PhotoUploadPageState();
+  PhotoUploadPageState createState() => PhotoUploadPageState();
 }
 
-class _PhotoUploadPageState extends State <PhotoUploadPage>
+class PhotoUploadPageState extends State <PhotoUploadPage>
 {
   File? _image;
   bool _isUploading = false;
@@ -50,8 +50,13 @@ class _PhotoUploadPageState extends State <PhotoUploadPage>
         try
         {
           String downloadUrl = await storageReference.getDownloadURL();
-          Get.snackbar('Success', 'Photo uploaded successfully!\nURL: $downloadUrl');
-        } 
+          Get.snackbar('Success', 'Photo uploaded successfully!');
+          Get.to(() => PhotoDisplayPage(
+            imageUrl: downloadUrl,
+            fileName: fileName,
+            uploadDate: DateTime.now(),
+          ));
+        }
         catch (error)
         {
           Get.snackbar('Error', 'Failed to retrieve download URL: $error');
@@ -61,7 +66,7 @@ class _PhotoUploadPageState extends State <PhotoUploadPage>
     catch (error)
     {
       Get.snackbar('Error', 'Failed to upload photo: $error');
-    } 
+    }
     finally
     {
       setState(()
@@ -124,7 +129,7 @@ class _PhotoUploadPageState extends State <PhotoUploadPage>
               label: const Text('Select Photo'),
               onPressed: _pickImage,
               style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 50),
+                minimumSize: const Size(double.infinity , 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
@@ -140,11 +145,49 @@ class _PhotoUploadPageState extends State <PhotoUploadPage>
               label: const Text('Upload Photo'),
               onPressed: _isUploading ? null : _uploadImage,
               style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 50),
+                minimumSize: const Size(double.infinity , 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PhotoDisplayPage extends StatelessWidget
+{
+  const PhotoDisplayPage({super.key , required this.imageUrl , required this.fileName , required this.uploadDate});
+
+  final String imageUrl;
+  final String fileName;
+  final DateTime uploadDate;
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Uploaded Photo'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.network(imageUrl),
+            const SizedBox(height: 20),
+            Text(
+              'File Name: $fileName',
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Upload Date: ${uploadDate.toLocal()}',
+              style: const TextStyle(fontSize: 16),
             ),
           ],
         ),

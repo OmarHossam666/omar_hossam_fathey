@@ -14,7 +14,9 @@ class AuthController extends GetxController
     if (user == null)
     {
       Get.offAll(() => LoginScreen());
-    } else {
+    } 
+    else
+    {
       Get.offAll(() => HomeScreen());
     }
   }

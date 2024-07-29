@@ -5,6 +5,8 @@ import 'theme_controller.dart';
 
 class HomeScreen extends StatelessWidget
 {
+  HomeScreen({super.key});
+
   final AuthController authController = Get.find();
   final ThemeController themeController = Get.find();
 
