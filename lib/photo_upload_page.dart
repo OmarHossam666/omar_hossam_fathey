@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:io';
 
 class PhotoUploadPage extends StatefulWidget
@@ -50,7 +51,16 @@ class PhotoUploadPageState extends State <PhotoUploadPage>
         try
         {
           String downloadUrl = await storageReference.getDownloadURL();
-          Get.snackbar('Success', 'Photo uploaded successfully!');
+
+          // Store metadata in Firestore
+          await FirebaseFirestore.instance.collection('photos').add
+          ({
+            'url': downloadUrl,
+            'fileName': fileName,
+            'uploadDate': DateTime.now(),
+          });
+
+          Get.snackbar('Success' , 'Photo uploaded successfully!');
           Get.to(() => PhotoDisplayPage(
             imageUrl: downloadUrl,
             fileName: fileName,
@@ -182,12 +192,12 @@ class PhotoDisplayPage extends StatelessWidget
             const SizedBox(height: 20),
             Text(
               'File Name: $fileName',
-              style: const TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 18 , fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             Text(
               'Upload Date: ${uploadDate.toLocal()}',
-              style: const TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 18 , fontWeight: FontWeight.bold),
             ),
           ],
         ),

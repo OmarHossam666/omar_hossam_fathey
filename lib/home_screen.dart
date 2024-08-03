@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'auth_controller.dart';
 import 'theme_controller.dart';
+import 'photo_list_page.dart';
 
 class HomeScreen extends StatelessWidget
 {
@@ -32,15 +33,36 @@ class HomeScreen extends StatelessWidget
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Welcome!",
-              style: TextStyle(fontSize: 24),
+              "Welcome Home!",
+              style: TextStyle(fontSize: 24 , fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
+              onPressed: ()
+              {
                 Get.toNamed('/upload');
               },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
               child: const Text('Upload Photo'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: ()
+              {
+                Get.to(() => const PhotoListPage());
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity , 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              child: const Text('View Uploaded Photos'),
             ),
           ],
         ),

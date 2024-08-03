@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,6 +7,7 @@ import 'login_screen.dart';
 import 'home_screen.dart';
 import 'theme_controller.dart';
 import 'photo_upload_page.dart';
+import 'photo_list_page.dart';
 import 'firebase_options.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,6 +18,8 @@ void main() async
 
   Get.put(AuthController()); // Ensure the AuthController is instantiated
   Get.put(ThemeController()); // Initialize ThemeController
+
+  FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: true);
 
   runApp(const MyApp());
 }
@@ -29,8 +33,7 @@ class MyApp extends StatelessWidget
   {
     final ThemeController themeController = Get.find();
 
-    return Obx(
-      () => GetMaterialApp(
+    return Obx(() => GetMaterialApp(
         title: 'Photo Upload App',
         theme: ThemeData(
           brightness: Brightness.light,
@@ -47,7 +50,14 @@ class MyApp extends StatelessWidget
         getPages: [
           GetPage(name: '/' , page: () => LoginScreen()),
           GetPage(name: '/home' , page: () => HomeScreen()),
-          GetPage(name: '/upload', page: () => const PhotoUploadPage())
+          GetPage(name: '/upload', page: () => const PhotoUploadPage()),
+          GetPage(name: '/list', page: () => const PhotoListPage()),
+          GetPage(name: '/display' , page: () => PhotoDisplayPage(
+            imageUrl: Get.arguments['imageUrl'],
+            fileName: Get.arguments['fileName'],
+            uploadDate: Get.arguments['uploadDate'],
+          ),
+        ),
         ],
       ),
     );

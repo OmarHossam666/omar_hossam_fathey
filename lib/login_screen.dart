@@ -19,7 +19,12 @@ class LoginScreen extends StatelessWidget
   {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: Text("Login",
+        style: GoogleFonts.lato(color: Colors.black87,
+          fontSize: 24,
+          fontWeight: FontWeight.bold
+          ),
+        ),
         actions: [
           IconButton(
             icon: Icon(themeController.isDarkMode.value ? Icons.dark_mode : Icons.light_mode),
@@ -35,8 +40,8 @@ class LoginScreen extends StatelessWidget
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Welcome Back",
-                  style: GoogleFonts.lato(
+                  "Welcome Back!",
+                  style: GoogleFonts.sarala(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -47,7 +52,7 @@ class LoginScreen extends StatelessWidget
                   decoration: InputDecoration(
                     labelText: "Email",
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(50.0),
                     ),
                   ),
                 ),
@@ -57,7 +62,7 @@ class LoginScreen extends StatelessWidget
                   decoration: InputDecoration(
                     labelText: "Password",
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(50.0),
                     ),
                   ),
                   obscureText: true,
@@ -71,7 +76,7 @@ class LoginScreen extends StatelessWidget
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
+                    minimumSize: const Size(double.infinity , 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -87,7 +92,7 @@ class LoginScreen extends StatelessWidget
                     );
                   },
                   style: TextButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
+                    minimumSize: const Size(double.infinity , 50),
                   ),
                   child: const Text("Register"),
                 ),

@@ -6,10 +6,10 @@ import 'home_screen.dart';
 class AuthController extends GetxController
 {
   static AuthController instance = Get.find();
-  late Rx<User?> _user;
+  late Rx <User?> _user;
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  _setInitialScreen(User? user)
+  void _setInitialScreen(User? user)
   {
     if (user == null)
     {
@@ -21,7 +21,7 @@ class AuthController extends GetxController
     }
   }
 
-  void register(String email, String password) async
+  void register(String email , String password) async
   {
     try
     {
@@ -33,11 +33,11 @@ class AuthController extends GetxController
     }
   }
 
-  void login(String email, String password) async
+  void login(String email , String password) async
   {
     try
     {
-      await auth.signInWithEmailAndPassword(email: email, password: password);
+      await auth.signInWithEmailAndPassword(email: email , password: password);
     } 
     catch (error)
     {
@@ -54,7 +54,7 @@ class AuthController extends GetxController
   void onReady()
   {
     super.onReady();
-    _user = Rx<User?>(auth.currentUser);
+    _user = Rx <User?> (auth.currentUser);
     _user.bindStream(auth.userChanges());
     ever(_user , _setInitialScreen);
   }
