@@ -196,6 +196,7 @@ class PhotoListPageState extends State <PhotoListPage>
                           imageUrl: photo['url'],
                           fileName: photo['fileName'],
                           uploadDate: photo['uploadDate'].toDate(),
+                          docId: photo.id,
                         ));
                       },
                     );
